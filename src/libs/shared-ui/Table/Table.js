@@ -38,7 +38,6 @@ export const Table = (props) => {
         {...getEdgeScrollingProps({
           style: {
             height: "400px",
-            overflowX: "hidden",
           },
         })}
       >
