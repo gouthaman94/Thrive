@@ -1,0 +1,42 @@
+.filterIcon {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.filterIcon--highlight {
+  background-color: rgba(255, 204, 17, 1);
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  max-width: 200px;
+  display: none;
+  background: #bfbfbf;
+  border-radius: 5px;
+  position: absolute;
+  overflow: auto;
+  min-width: 200px;
+  min-height: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  top: 38px;
+}
+
+.dropdown-content--top-left {
+  right: 0;
+  bottom: 100%;
+}
+.dropdown-content--top-right {
+  bottom: 100%;
+}
+.dropdown-content--bottom-left {
+  right: 0;
+}
+.dropdown-content--bottom-right {
+  left: 5px;
+}
+.dropdown-content--show {
+  display: block;
+}
