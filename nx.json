@@ -1,0 +1,30 @@
+{
+  "npmScope": "thrive",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "iron-hide": {
+      "tags": []
+    },
+    "iron-hide-e2e": {
+      "tags": [],
+      "implicitDependencies": ["iron-hide"]
+    }
+  }
+}
