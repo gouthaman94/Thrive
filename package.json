@@ -81,11 +81,6 @@
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "eslint --fix",
@@ -95,5 +90,10 @@
       "stylelint '**/*.scss' --fix",
       "nx format:write --uncommitted"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
