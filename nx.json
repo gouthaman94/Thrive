@@ -14,7 +14,13 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e", "lint-styles"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "lint-styles"
+        ]
       }
     }
   },
@@ -24,10 +30,14 @@
     },
     "iron-hide-e2e": {
       "tags": [],
-      "implicitDependencies": ["iron-hide"]
+      "implicitDependencies": [
+        "iron-hide"
+      ]
     },
     "nav-bar": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     }
   }
 }
