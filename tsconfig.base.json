@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@iron-hide/nav-bar": ["libs/nav-bar/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

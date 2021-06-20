@@ -21,7 +21,7 @@
             ],
             "styles": ["apps/iron-hide/src/styles.scss"],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig": "webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -52,7 +52,8 @@
           "executor": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "iron-hide:build",
-            "hmr": true
+            "hmr": true,
+            "webpackConfig": "webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -64,7 +65,14 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/iron-hide/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["apps/iron-hide/**/*.{ts,tsx,js,jsx}"],
+            "fix": true
+          }
+        },
+        "lint-styles": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npx stylelint apps/iron-hide/src/**/*.scss"
           }
         },
         "test": {
@@ -99,6 +107,33 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/iron-hide-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "nav-bar": {
+      "root": "libs/nav-bar",
+      "sourceRoot": "libs/nav-bar/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/nav-bar/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "lint-styles": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npx stylelint libs/nav-bar/src/**/*.scss"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nav-bar"],
+          "options": {
+            "jestConfig": "libs/nav-bar/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

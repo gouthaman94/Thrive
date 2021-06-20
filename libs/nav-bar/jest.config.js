@@ -1,10 +1,9 @@
 module.exports = {
-  displayName: "iron-hide",
+  displayName: "nav-bar",
   preset: "../../jest.preset.js",
   transform: {
-    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "@nrwl/react/plugins/jest",
     "^.+\\.[tj]sx?$": "babel-jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../coverage/apps/iron-hide",
+  coverageDirectory: "../../coverage/libs/nav-bar",
 };
