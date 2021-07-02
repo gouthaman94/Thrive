@@ -1,5 +1,10 @@
 .app {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #0a0a0a;
+  flex-direction: column;
+}
+
+.tab_grid {
+  margin: 0.25rem 0.3rem 0.25rem 3.5rem;
 }

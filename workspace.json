@@ -1,6 +1,27 @@
 {
   "version": 2,
   "projects": {
+    "dashboard-grid": {
+      "root": "libs/dashboard-grid",
+      "sourceRoot": "libs/dashboard-grid/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dashboard-grid/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dashboard-grid"],
+          "options": {
+            "jestConfig": "libs/dashboard-grid/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "iron-hide": {
       "root": "apps/iron-hide",
       "sourceRoot": "apps/iron-hide/src",
@@ -133,6 +154,27 @@
           "outputs": ["coverage/libs/nav-bar"],
           "options": {
             "jestConfig": "libs/nav-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-ui": {
+      "root": "libs/shared-ui",
+      "sourceRoot": "libs/shared-ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared-ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared-ui"],
+          "options": {
+            "jestConfig": "libs/shared-ui/jest.config.js",
             "passWithNoTests": true
           }
         }

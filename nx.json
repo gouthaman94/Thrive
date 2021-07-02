@@ -19,15 +19,21 @@
     }
   },
   "projects": {
+    "dashboard-grid": {
+      "tags": ["app"]
+    },
     "iron-hide": {
-      "tags": []
+      "tags": ["app"]
     },
     "iron-hide-e2e": {
-      "tags": [],
+      "tags": ["test"],
       "implicitDependencies": ["iron-hide"]
     },
     "nav-bar": {
       "tags": ["app"]
+    },
+    "shared-ui": {
+      "tags": ["shared"]
     }
   }
 }

@@ -1,0 +1,27 @@
+.dashboard {
+  &__container {
+    background-color: #3d3d3d;
+  }
+  &__grid_item {
+    background: #666666;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.wrapper {
+  height: 44px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  border: 1px solid #ffffffa6;
+  border-radius: 4px;
+  background: inherit;
+  color: #e0e0e0;
+}

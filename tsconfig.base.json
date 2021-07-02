@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@iron-hide/nav-bar": ["libs/nav-bar/src/index.ts"]
+      "@iron-hide/nav-bar": ["libs/nav-bar/src/index.ts"],
+      "@iron-hide/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@iron-hide/dashboard-grid": ["libs/dashboard-grid/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,18 @@
+.tab {
+  display: flex;
+  gap: 0.125rem;
+  &__title {
+    background: #3d3d3d;
+    border-radius: 0.25rem 0.25rem 0rem 0rem;
+    width: 15rem;
+    height: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 1rem;
+    border-bottom: thin solid rgb(10, 10, 10);
+    font: normal normal bold 1rem Oxygen;
+    color: #ffffff;
+  }
+}
