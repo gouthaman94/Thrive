@@ -1,0 +1,77 @@
+table tr,
+table th {
+  border: 1px solid black;
+  width: 112px;
+  height: 32px;
+}
+
+table td {
+  border-left: 1px solid black;
+}
+
+.container {
+  padding: 5px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background-color: #333333;
+}
+
+.item {
+  height: 500px;
+}
+
+.table {
+  background: var(--data-background-default) 0% 0% no-repeat padding-box;
+  width: 100%;
+  text-align: left;
+  color: #d6d6d6;
+  background-color: #333333;
+  border-collapse: collapse;
+  border-spacing: 0;
+  user-select: none;
+  overflow-x: hidden;
+}
+.table__cell {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) /
+    var(--unnamed-line-spacing-26) var(--unnamed-font-family-oxygen);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--data-content);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-left: 5px;
+}
+.table__cell:hover {
+  background: var(--data-background-hover) 0% 0% no-repeat padding-box;
+}
+
+.ExcelCursorOuter {
+  position: relative;
+}
+
+.ExcelCursorBottom {
+  position: absolute;
+  top: 19px;
+  right: 0px;
+  background: #aeaeae;
+  width: 8px;
+  height: 8px;
+  border-radius: 90px 0 0 0;
+  border-right: 0px;
+  border-bottom: 0px;
+}
+
+.ExcelCursorTop {
+  position: absolute;
+  top: -2px;
+  left: -4px;
+  background: #aeaeae;
+  width: 8px;
+  height: 8px;
+  border-radius: 0 0 90px 0;
+  border-right: 0px;
+  border-bottom: 0px;
+}

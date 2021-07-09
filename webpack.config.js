@@ -4,7 +4,14 @@ module.exports = (config, context) => {
   module.rules.push(
     {
       test: /\.svg$/,
-      use: ["@svgr/webpack", "url-loader"],
+      use: [
+        {
+          loader: require.resolve("babel-loader"),
+        },
+        {
+          loader: require.resolve("react-svg-loader"),
+        },
+      ],
     },
     {
       test: /\.(png|jpe?g|gif)$/i,

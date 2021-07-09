@@ -14,11 +14,21 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e", "lint-styles"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "lint-styles",
+          "build-storybook"
+        ]
       }
     }
   },
   "projects": {
+    "assets": {
+      "tags": ["app"]
+    },
     "dashboard-grid": {
       "tags": ["app"]
     },
