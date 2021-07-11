@@ -9,4 +9,6 @@ rootMain.stories.push(
   ],
 );
 
+//rootMain.addons.push(...[{}]);
+
 module.exports = rootMain;

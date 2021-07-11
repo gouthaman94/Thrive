@@ -1,10 +1,10 @@
 import { storiesOf } from "@storybook/react";
 import { Dropdown } from "../dropdown";
 
-storiesOf("1 - Components/Table/DropDown", module).add("Default", () => {
+storiesOf("1 - Components/Table/DropDown", module).add("Default", (args) => {
   return (
     <Dropdown
-      menuWidth={150}
+      menuWidth={args.number}
       onToggleChange={() => {
         console.log("change");
       }}

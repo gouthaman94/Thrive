@@ -3,12 +3,16 @@ import { useEffect } from "react";
 import { useSortBy, useTable } from "react-table";
 import { useCellRangeSelection } from "./table-hooks/useCellRangeSelection";
 import useScrollOnEdges from "react-scroll-on-edges";
-import styles from "./table.module.scss";
+import Styles from "./table.module.scss";
 import Header from "./table-header/header";
 
+export interface IColumns {
+  label: string;
+  accessor: string;
+}
 /* eslint-disable-next-line */
 export interface TableProps {
-  columns: any;
+  columns: IColumns[];
   data: any;
   sortData: any;
   currentSort: any;
@@ -58,10 +62,13 @@ export function Table(props: TableProps) {
         },
       })}
     >
-      <table {...getTableProps()} className={styles.table}>
+      <table {...getTableProps()} className={Styles.table}>
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <tr
+              className={Styles.table__row}
+              {...headerGroup.getHeaderGroupProps()}
+            >
               {headerGroup.headers.map((column) =>
                 column.render("Header", { sortData, currentSort }),
               )}
@@ -72,13 +79,13 @@ export function Table(props: TableProps) {
           {rows.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr className={Styles.table__row} {...row.getRowProps()}>
                 {row.cells.map((cell: any) => {
                   return (
                     <td
                       {...cell.getCellRangeSelectionProps({ isCtrl: true })}
                       {...cell.getCellProps()}
-                      class="table__cell"
+                      className={Styles.table__cell}
                       {...(cellsSelected?.[cell.id] && {
                         style: {
                           borderTop:
@@ -103,15 +110,15 @@ export function Table(props: TableProps) {
                       {cellsSelected[cell.id]?.isLastColumn &&
                         cellsSelected[cell.id]?.isLastRow &&
                         !isSelectingCells && (
-                          <div className="ExcelCursorOuter">
-                            <div className="ExcelCursorBottom"></div>
+                          <div className={Styles.excel_cursor__outer}>
+                            <div className={Styles.excel_cursor__bottom}></div>
                           </div>
                         )}
                       {cellsSelected[cell.id]?.isFirstRow &&
                         cellsSelected[cell.id]?.isFirstColumn &&
                         !isSelectingCells && (
-                          <div className="ExcelCursorOuter">
-                            <div className="ExcelCursorTop"></div>
+                          <div className={Styles.excel_cursor__outer}>
+                            <div className={Styles.excel_cursor__top}></div>
                           </div>
                         )}
                       {cell.render("Cell")}

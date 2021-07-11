@@ -1,45 +1,42 @@
+@import "styles/variables.module.scss";
+
 .header {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
-    var(--unnamed-font-size-14) / var(--unnamed-line-spacing-26)
-    var(--unnamed-font-family-oxygen);
-  letter-spacing: var(--unnamed-character-spacing-0);
-  color: var(--data-content);
+  font: $font-style-normal normal $font-weight-bold $font-size-14
+    $line-spacing-26 $font-family-oxygen;
+  letter-spacing: $character-spacing-0;
+  color: $data-content;
   text-align: left;
   position: sticky;
   top: 0;
   background-color: #333333;
   position: -webkit-sticky;
   border: 1px solid black;
-}
-.header:hover {
-  background: var(--data-background-hover) 0% 0% no-repeat padding-box;
-}
-
-.header__content {
-  display: flex;
-  justify-content: space-between;
-}
-
-.header__text {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 80%;
-  overflow: hidden;
-  padding-left: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.header__dropdown {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-}
-
-.header__dropdown--selected {
-  background: var(--aux-select) 0% 0% no-repeat padding-box;
-  border-radius: 4px;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
+    overflow: hidden;
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    &----selected {
+      background: $aux-select 0% 0% no-repeat padding-box;
+      border-radius: 4px;
+    }
+  }
+  &:hover {
+    background: $data-background-hover 0% 0% no-repeat padding-box;
+  }
 }

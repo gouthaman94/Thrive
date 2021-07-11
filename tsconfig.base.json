@@ -14,7 +14,8 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "typeRoots": ["./typings", "./node_modules/@types"],
+    "noImplicitAny": false,
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "@iron-hide/dashboard-grid": ["libs/dashboard-grid/src/index.ts"],
       "@iron-hide/nav-bar": ["libs/nav-bar/src/index.ts"],
