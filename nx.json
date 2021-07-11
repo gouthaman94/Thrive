@@ -27,23 +27,37 @@
   },
   "projects": {
     "assets": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "dashboard-grid": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "iron-hide": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "iron-hide-e2e": {
-      "tags": ["test"],
-      "implicitDependencies": ["iron-hide"]
+      "tags": [
+        "test"
+      ],
+      "implicitDependencies": [
+        "iron-hide"
+      ]
     },
     "nav-bar": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "shared-ui": {
-      "tags": ["shared"]
+      "tags": [
+        "shared"
+      ]
     }
   }
 }
