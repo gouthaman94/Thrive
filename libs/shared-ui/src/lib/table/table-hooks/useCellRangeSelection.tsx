@@ -5,9 +5,11 @@ import { actions, makePropGetter, functionalUpdate } from "react-table";
 actions.cellRangeSelectionStart = "cellRangeSelectionStart";
 actions.cellRangeSelecting = "cellRangeSelecting";
 actions.cellRangeSelectionEnd = "cellRangeSelectionEnd";
+actions.cellCurrentColumn = "cellCurrentColumn";
 actions.setSelectedCells = "setSelectedCells"; // exposed to user on an instance
+actions.setActions = "setActions"; // exposed to user on an instance
 
-export const useCellRangeSelection = (hooks: any) => {
+export const useCellRangeSelection = (hooks) => {
   hooks.getCellRangeSelectionProps = [defaultgetCellRangeSelectionProps];
   hooks.stateReducers.push(reducer);
   hooks.useInstance.push(useInstance);
@@ -16,35 +18,36 @@ export const useCellRangeSelection = (hooks: any) => {
 
 useCellRangeSelection.pluginName = "useCellRangeSelection";
 
-const defaultgetCellRangeSelectionProps = (
-  props: any,
-  { instance, cell }: any,
-) => {
+const defaultgetCellRangeSelectionProps = (props, { instance, cell }) => {
   const {
-    state: { isSelectingCells },
+    state: { /*isMirrorSelected,*/ isSelectingCells },
     dispatch,
   } = instance;
 
   // These actions are not exposed on an instance, as we provide setSelectedCells and getCellsBetweenId.
-  const start = (startCell: any, event: any) =>
+  const start = (startCell, event) =>
     dispatch({ type: actions.cellRangeSelectionStart, startCell, event });
-  const selecting = (selectingEndCell: any, event: any) =>
+  const selecting = (selectingEndCell, event) =>
     dispatch({ type: actions.cellRangeSelecting, selectingEndCell, event });
-  const end = (endCell: any, event: any) =>
+  const end = (endCell, event) =>
     dispatch({ type: actions.cellRangeSelectionEnd, endCell, event });
-
+  const currentColumn = (currentColumn, event) =>
+    dispatch({ type: actions.cellCurrentColumn, currentColumn, event });
   return [
     props,
     {
-      onMouseDown: (e: React.MouseEvent) => {
+      onMouseDown: (e) => {
         e.persist(); // event-pooling
         start(cell.id, e);
       },
-      onMouseUp: (e: React.MouseEvent) => {
+      onMouseUp: (e) => {
         e.persist();
         end(cell.id, e);
       },
-      onMouseEnter: (e: React.MouseEvent) => {
+      onMouseOver: (e) => {
+        currentColumn(cell.id, e);
+      },
+      onMouseEnter: (e) => {
         if (isSelectingCells) {
           e.persist();
           selecting(cell.id, e);
@@ -57,22 +60,53 @@ const defaultgetCellRangeSelectionProps = (
 // currentSelectedCells: Is for currently selected range
 // selectedCells: Contains all selected cells
 // On cellRangeSelectionEnd: we move currentSelectedCells to selectedCells
-function reducer(state: any, action: any, previousState: any, instance: any) {
+function reducer(state, action, previousState, instance) {
   if (action.type === actions.init) {
     return {
       ...state,
       selectedCells: { ...instance.initialState.selectedCells } || {},
+      mirror: {
+        categoryStartRow: false,
+        categoryEndRow: false,
+        firstEndSelection: null,
+        firstStartSelection: null,
+      },
       isSelectingCells: false,
       startCellSelection: null,
       endCellSelection: null,
       currentSelectedCells: {},
+      action: {
+        isBarSelected: false,
+        isMirrorSelected: false,
+      },
+      currentColumn: null,
     };
   }
 
+  if (action.type === actions.setActions) {
+    return {
+      ...state,
+      action: {
+        ...state.action,
+        isBarSelected: action.actionObj["bar"],
+        isMirrorSelected: action.actionObj["mirror"],
+      },
+    };
+  }
+  if (action.type === actions.cellCurrentColumn) {
+    return {
+      ...state,
+      currentColumn: action.currentColumn,
+    };
+  }
   if (action.type === actions.cellRangeSelectionStart) {
     const { startCell, event } = action;
     const {
-      state: { startCellSelection },
+      state: {
+        startCellSelection,
+        mirror: { categoryStartRow, categoryEndRow },
+        action: { isBarSelected, isMirrorSelected },
+      },
       getCellsBetweenId,
     } = instance;
 
@@ -83,6 +117,16 @@ function reducer(state: any, action: any, previousState: any, instance: any) {
       } else {
         newState[startCell] = true;
       }
+    } else if (isMirrorSelected) {
+      const split = "_col_row_";
+      const [curCol] = startCell.split(split);
+      newState = {
+        ...newState,
+        ...getCellsBetweenId(
+          curCol + split + categoryStartRow,
+          curCol + split + categoryEndRow,
+        ),
+      };
     } else {
       //Single row selection
       const gh = getCellsBetweenId(startCell, startCell);
@@ -98,6 +142,13 @@ function reducer(state: any, action: any, previousState: any, instance: any) {
           ...newState,
         } || {},
       isSelectingCells: true,
+      mirror: {
+        ...state.mirror,
+        categoryStartRow:
+          isBarSelected && !isMirrorSelected
+            ? startCell.split("_col_row_")[1]
+            : state.mirror.categoryStartRow,
+      },
       startCellSelection: event.shiftKey
         ? startCellSelection || startCell
         : startCell,
@@ -107,15 +158,68 @@ function reducer(state: any, action: any, previousState: any, instance: any) {
   if (action.type === actions.cellRangeSelecting) {
     const { selectingEndCell } = action;
     const {
-      state: { startCellSelection },
+      state: {
+        startCellSelection,
+        mirror: {
+          categoryStartRow,
+          categoryEndRow,
+          // firstStartSelection,
+          // firstEndSelection,
+        },
+        selectedCells,
+        action: { isBarSelected, isMirrorSelected },
+      },
       getCellsBetweenId,
     } = instance;
 
-    // Get cells between cell ids (range)
-    const newState = getCellsBetweenId(startCellSelection, selectingEndCell);
+    let newState;
+    const split = "_col_row_";
+    const [, cEndIndex] = selectingEndCell.split(split);
+    const selectingStart =
+      +cEndIndex + 1 == categoryStartRow || +cEndIndex - 1 == categoryStartRow;
+    const selectingEnd =
+      +cEndIndex + 1 == categoryEndRow || +cEndIndex - 1 == categoryEndRow;
+
+    // let start = cEndIndex < categoryEndRow ?  cEndIndex : categoryStartRow;
+    // let end = cEndIndex < categoryEndRow ?  categoryEndRow : cEndIndex;
+
+    const start = selectingStart ? cEndIndex : categoryStartRow;
+    const end = selectingEnd ? cEndIndex : categoryEndRow;
+
+    if (!isMirrorSelected) {
+      // Get cells between cell ids (range)
+      newState = getCellsBetweenId(startCellSelection, selectingEndCell);
+    } else {
+      let selected = {};
+      const selectedColumns = Object.keys(selectedCells).reduce((x, y) => {
+        const [col] = y.split(split);
+        x[col] = true;
+        return x;
+      }, {});
+      Object.keys(selectedColumns).map((cell) => {
+        const [col] = cell.split(split);
+        selected = {
+          ...selected,
+          ...getCellsBetweenId(col + split + start, col + split + end),
+        };
+      });
+      newState = selected;
+    }
 
     return {
       ...state,
+      ...(isMirrorSelected && { selectedCells: { ...newState } }),
+      mirror: {
+        ...state.mirror,
+        categoryStartRow:
+          isBarSelected && isMirrorSelected
+            ? start
+            : state.mirror.categoryStartRow,
+        categoryEndRow:
+          isBarSelected && isMirrorSelected ? end : state.mirror.categoryEndRow,
+        firstStartSelection: selectingStart,
+        firstEndSelection: selectingEnd,
+      },
       endCellSelection: selectingEndCell,
       currentSelectedCells: newState,
     };
@@ -123,11 +227,17 @@ function reducer(state: any, action: any, previousState: any, instance: any) {
 
   if (action.type === actions.cellRangeSelectionEnd) {
     const { endCell, event } = action;
-    let {
-      // eslint-disable-next-line prefer-const
-      state: { startCellSelection, selectedCells, currentSelectedCells },
-      // eslint-disable-next-line prefer-const
+    const {
+      state: {
+        startCellSelection,
+        selectedCells,
+        action: { isBarSelected, isMirrorSelected },
+      },
       getCellsBetweenId,
+    } = instance;
+
+    let {
+      state: { currentSelectedCells },
     } = instance;
 
     if (event.shiftKey) {
@@ -138,6 +248,15 @@ function reducer(state: any, action: any, previousState: any, instance: any) {
       ...state,
       selectedCells: { ...selectedCells, ...currentSelectedCells },
       isSelectingCells: false,
+      mirror: {
+        ...state.mirror,
+        firstStartSelection: null,
+        firstEndSelection: null,
+        categoryEndRow:
+          isBarSelected && !isMirrorSelected
+            ? endCell.split("_col_row_")[1]
+            : state.mirror.categoryEndRow,
+      },
       currentSelectedCells: {},
       // commented we need to retain startCellSelection on shift selection.
       // startCellSelection: event.shiftKey ? startCellSelection : null,
@@ -158,10 +277,10 @@ function reducer(state: any, action: any, previousState: any, instance: any) {
   }
 }
 
-function useInstance(instance: any) {
+function useInstance(instance) {
   const { dispatch, allColumns, rows } = instance;
 
-  const cellsById: any = {};
+  const cellsById = {};
   // make user control the cellIdSplitter
   const defaultCellIdSplitBy = "_col_row_";
   const cellIdSplitBy = instance.cellIdSplitBy || defaultCellIdSplitBy;
@@ -172,6 +291,16 @@ function useInstance(instance: any) {
       return dispatch({
         type: actions.setSelectedCells,
         selectedCells,
+      });
+    },
+    [dispatch],
+  );
+
+  const toolbarActions = React.useCallback(
+    (actionObj) => {
+      return dispatch({
+        type: actions.setActions,
+        actionObj,
       });
     },
     [dispatch],
@@ -191,8 +320,8 @@ function useInstance(instance: any) {
         cellsById[startCell].row.index,
         cellsById[endCell].row.index,
       ];
-      const columnsIndex: Array<any> = [];
-      allColumns.forEach((col: any, index: number) => {
+      const columnsIndex: any[] = [];
+      allColumns.forEach((col, index) => {
         if (
           col.id === cellsById[startCell].column.id ||
           col.id === cellsById[endCell].column.id
@@ -202,8 +331,8 @@ function useInstance(instance: any) {
       });
 
       // all selected rows and selected columns
-      const selectedColumns = [];
-      const selectedRows = [];
+      const selectedColumns: any[] = [];
+      const selectedRows: any[] = [];
       for (
         let i = Math.min(...columnsIndex);
         i <= Math.max(...columnsIndex);
@@ -216,7 +345,7 @@ function useInstance(instance: any) {
       }
 
       // select cells
-      const cellsBetween: any = {};
+      const cellsBetween = {};
       if (selectedRows.length && selectedColumns.length) {
         for (let i = 0; i < selectedRows.length; i++) {
           for (let j = 0; j < selectedColumns.length; j++) {
@@ -224,10 +353,10 @@ function useInstance(instance: any) {
             const cell = cellsById[id];
             cellsBetween[cell.id] = {
               value: cell.value,
-              isFirstColumn: j == 0,
-              isLastColumn: j == selectedColumns.length - 1,
-              isFirstRow: i == 0,
-              isLastRow: i == selectedRows.length - 1,
+              isFirstColumn: j === 0,
+              isLastColumn: j === selectedColumns.length - 1,
+              isFirstRow: i === 0,
+              isLastRow: i === selectedRows.length - 1,
             };
           }
         }
@@ -242,14 +371,12 @@ function useInstance(instance: any) {
     getCellsBetweenId,
     cellsById,
     setSelectedCells,
+    toolbarActions,
   });
 }
 
-function prepareRow(
-  row: any,
-  { instance: { cellsById, cellIdSplitBy }, instance }: any,
-) {
-  row.allCells.forEach((cell: any) => {
+function prepareRow(row, { instance: { cellsById, cellIdSplitBy }, instance }) {
+  row.allCells.forEach((cell) => {
     cell.id = cell.column.id + cellIdSplitBy + row.id;
     cellsById[cell.id] = cell;
     cell.getCellRangeSelectionProps = makePropGetter(

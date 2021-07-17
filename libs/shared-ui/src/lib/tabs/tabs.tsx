@@ -1,5 +1,6 @@
 import { ReactElement, useCallback, useState } from "react";
-import styles from "./tabs.module.scss";
+import { Ellipsis } from "@iron-hide/assets";
+import Styles from "./tabs.module.scss";
 
 interface ITabs {
   children: ReactElement[];
@@ -21,8 +22,11 @@ export const TabTitle: React.FC<ITabTitle> = ({
   }, [setSelectedTab, index]);
 
   return (
-    <div onClick={onClick} className={styles.tab__title}>
-      <span>{title}</span>
+    <div onClick={onClick} className={Styles.tab__title}>
+      <div className={Styles.tab__title_text}>{title}</div>
+      <div className={Styles.tab__title_icon}>
+        <Ellipsis />
+      </div>
     </div>
   );
 };
@@ -32,7 +36,7 @@ export const Tabs: React.FC<ITabs> = ({ children }) => {
 
   return (
     <div>
-      <div className={styles.tab}>
+      <div className={Styles.tab}>
         {children.map((item, index) => (
           <TabTitle
             key={index}

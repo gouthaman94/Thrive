@@ -7,12 +7,21 @@
     width: 15rem;
     height: 2.5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
     padding-left: 1rem;
     border-bottom: thin solid rgb(10, 10, 10);
     font: normal normal bold 1rem Oxygen;
     color: #ffffff;
+    cursor: pointer;
+  }
+  &__title_text {
+    display: flex;
+    align-items: center;
+  }
+  &__title_icon {
+    width: 0.625rem;
+    padding: 0.75rem;
+    display: flex;
   }
 }

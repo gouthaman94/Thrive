@@ -11,15 +11,17 @@ export const Filter = (props: any) => {
           className={`${Styles.sort_icon} ${
             isDesc ? Styles["sort_icon--selected"] : ""
           }`}
+          onClick={() => sortData("desc")}
         >
-          <SortDesc onClick={() => sortData("desc")} />
+          <SortDesc />
         </div>
         <div
           className={`${Styles.sort_icon} ${
             isAsc ? Styles["sort_icon--selected"] : ""
           }`}
+          onClick={() => sortData("asc")}
         >
-          <SortAsc onClick={() => sortData("asc")} />
+          <SortAsc />
         </div>
       </div>
       <div className={Styles.divider} />

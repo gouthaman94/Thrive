@@ -80,6 +80,7 @@ export const Dropdown = (props: IDropDown) => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }
+    return;
   }, [isDropDownMenuClose]);
 
   const childrenWithProps = React.Children.map(children, (child, i: number) =>
