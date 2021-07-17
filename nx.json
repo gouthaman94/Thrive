@@ -32,18 +32,18 @@
     "dashboard-grid": {
       "tags": ["app"]
     },
+    "nav-bar": {
+      "tags": ["app"]
+    },
+    "shared-ui": {
+      "tags": ["shared"]
+    },
     "thrive": {
       "tags": ["app"]
     },
     "thrive-e2e": {
       "tags": ["test"],
       "implicitDependencies": ["thrive"]
-    },
-    "nav-bar": {
-      "tags": ["app"]
-    },
-    "shared-ui": {
-      "tags": ["shared"]
     }
   }
 }
