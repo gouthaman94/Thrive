@@ -10,35 +10,18 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "noImplicitAny": false,
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
-      "@iron-hide/assets": [
-        "libs/assets/src/index.ts"
-      ],
-      "@iron-hide/dashboard-grid": [
-        "libs/dashboard-grid/src/index.ts"
-      ],
-      "@iron-hide/nav-bar": [
-        "libs/nav-bar/src/index.ts"
-      ],
-      "@iron-hide/shared-ui": [
-        "libs/shared-ui/src/index.ts"
-      ]
+      "@thrive/assets": ["libs/assets/src/index.ts"],
+      "@thrive/dashboard-grid": ["libs/dashboard-grid/src/index.ts"],
+      "@thrive/nav-bar": ["libs/nav-bar/src/index.ts"],
+      "@thrive/shared-ui": ["libs/shared-ui/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp",
-    "types"
-  ]
+  "exclude": ["node_modules", "tmp", "types"]
 }

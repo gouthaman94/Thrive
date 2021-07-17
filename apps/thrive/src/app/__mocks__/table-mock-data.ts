@@ -1,4 +1,4 @@
-import { IColumns } from "@iron-hide/shared-ui";
+import { IColumns } from "@thrive/shared-ui";
 
 const range = (len: number) => {
   const arr: number[] = [];

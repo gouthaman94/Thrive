@@ -1,6 +1,6 @@
 /** temp tab before abstraction*/
 
-import { Charts, Table } from "@iron-hide/shared-ui";
+import { Charts, Table } from "@thrive/shared-ui";
 import { useState } from "react";
 import { makeData } from "./__mocks__/table-mock-data";
 

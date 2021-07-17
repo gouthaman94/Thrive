@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SortDown, SortDownFill } from "@iron-hide/assets";
+import { SortDown, SortDownFill } from "@thrive/assets";
 import Styles from "./dropdown.module.scss";
 
 interface IDropDown {

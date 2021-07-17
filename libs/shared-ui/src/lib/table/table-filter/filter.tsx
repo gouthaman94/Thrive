@@ -1,5 +1,5 @@
 import Styles from "./filter.module.scss";
-import { SortAsc, SortDesc } from "@iron-hide/assets";
+import { SortAsc, SortDesc } from "@thrive/assets";
 
 export const Filter = (props: any) => {
   const { sortData, isAsc, isDesc, filterList } = props;

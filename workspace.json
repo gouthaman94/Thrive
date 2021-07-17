@@ -9,16 +9,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/assets/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/assets/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/assets"
-          ],
+          "outputs": ["coverage/libs/assets"],
           "options": {
             "jestConfig": "libs/assets/jest.config.js",
             "passWithNoTests": true
@@ -34,16 +30,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/dashboard-grid/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/dashboard-grid/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/dashboard-grid"
-          ],
+          "outputs": ["coverage/libs/dashboard-grid"],
           "options": {
             "jestConfig": "libs/dashboard-grid/jest.config.js",
             "passWithNoTests": true
@@ -51,29 +43,22 @@
         }
       }
     },
-    "iron-hide": {
-      "root": "apps/iron-hide",
-      "sourceRoot": "apps/iron-hide/src",
+    "thrive": {
+      "root": "apps/thrive",
+      "sourceRoot": "apps/thrive/src",
       "projectType": "application",
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/iron-hide",
-            "index": "apps/iron-hide/src/index.html",
-            "main": "apps/iron-hide/src/main.tsx",
-            "polyfills": "apps/iron-hide/src/polyfills.ts",
-            "tsConfig": "apps/iron-hide/tsconfig.app.json",
-            "assets": [
-              "apps/iron-hide/src/favicon.ico",
-              "apps/iron-hide/src/assets"
-            ],
-            "styles": [
-              "apps/iron-hide/src/styles.scss"
-            ],
+            "outputPath": "dist/apps/thrive",
+            "index": "apps/thrive/src/index.html",
+            "main": "apps/thrive/src/main.tsx",
+            "polyfills": "apps/thrive/src/polyfills.ts",
+            "tsConfig": "apps/thrive/tsconfig.app.json",
+            "assets": ["apps/thrive/src/favicon.ico", "apps/thrive/src/assets"],
+            "styles": ["apps/thrive/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "webpack.config.js"
           },
@@ -81,8 +66,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/iron-hide/src/environments/environment.ts",
-                  "with": "apps/iron-hide/src/environments/environment.prod.ts"
+                  "replace": "apps/thrive/src/environments/environment.ts",
+                  "with": "apps/thrive/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -105,13 +90,13 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "iron-hide:build",
+            "buildTarget": "thrive:build",
             "hmr": true,
             "webpackConfig": "webpack.config.js"
           },
           "configurations": {
             "production": {
-              "buildTarget": "iron-hide:build:production",
+              "buildTarget": "thrive:build:production",
               "hmr": false
             }
           }
@@ -119,54 +104,48 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/iron-hide/**/*.{ts,tsx,js,jsx}"
-            ],
+            "lintFilePatterns": ["apps/thrive/**/*.{ts,tsx,js,jsx}"],
             "fix": true
           }
         },
         "lint-styles": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "npx stylelint apps/iron-hide/src/**/*.scss"
+            "command": "npx stylelint apps/thrive/src/**/*.scss"
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/iron-hide"
-          ],
+          "outputs": ["coverage/apps/thrive"],
           "options": {
-            "jestConfig": "apps/iron-hide/jest.config.js",
+            "jestConfig": "apps/thrive/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "iron-hide-e2e": {
-      "root": "apps/iron-hide-e2e",
-      "sourceRoot": "apps/iron-hide-e2e/src",
+    "thrive-e2e": {
+      "root": "apps/thrive-e2e",
+      "sourceRoot": "apps/thrive-e2e/src",
       "projectType": "application",
       "targets": {
         "e2e": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/iron-hide-e2e/cypress.json",
-            "tsConfig": "apps/iron-hide-e2e/tsconfig.e2e.json",
-            "devServerTarget": "iron-hide:serve"
+            "cypressConfig": "apps/thrive-e2e/cypress.json",
+            "tsConfig": "apps/thrive-e2e/tsconfig.e2e.json",
+            "devServerTarget": "thrive:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "iron-hide:serve:production"
+              "devServerTarget": "thrive:serve:production"
             }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/iron-hide-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/thrive-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -179,9 +158,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/nav-bar/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/nav-bar/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "lint-styles": {
@@ -192,9 +169,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nav-bar"
-          ],
+          "outputs": ["coverage/libs/nav-bar"],
           "options": {
             "jestConfig": "libs/nav-bar/jest.config.js",
             "passWithNoTests": true
@@ -210,16 +185,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/shared-ui/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/shared-ui/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared-ui"
-          ],
+          "outputs": ["coverage/libs/shared-ui"],
           "options": {
             "jestConfig": "libs/shared-ui/jest.config.js",
             "passWithNoTests": true
@@ -242,9 +213,7 @@
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/react",
             "outputPath": "dist/storybook/shared-ui",
@@ -282,5 +251,5 @@
       }
     }
   },
-  "defaultProject": "iron-hide"
+  "defaultProject": "thrive"
 }

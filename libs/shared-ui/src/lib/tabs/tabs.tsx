@@ -1,5 +1,5 @@
 import { ReactElement, useCallback, useState } from "react";
-import { Ellipsis } from "@iron-hide/assets";
+import { Ellipsis } from "@thrive/assets";
 import Styles from "./tabs.module.scss";
 
 interface ITabs {

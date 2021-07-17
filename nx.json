@@ -27,37 +27,23 @@
   },
   "projects": {
     "assets": {
-      "tags": [
-        "app"
-      ]
+      "tags": ["app"]
     },
     "dashboard-grid": {
-      "tags": [
-        "app"
-      ]
+      "tags": ["app"]
     },
-    "iron-hide": {
-      "tags": [
-        "app"
-      ]
+    "thrive": {
+      "tags": ["app"]
     },
-    "iron-hide-e2e": {
-      "tags": [
-        "test"
-      ],
-      "implicitDependencies": [
-        "iron-hide"
-      ]
+    "thrive-e2e": {
+      "tags": ["test"],
+      "implicitDependencies": ["thrive"]
     },
     "nav-bar": {
-      "tags": [
-        "app"
-      ]
+      "tags": ["app"]
     },
     "shared-ui": {
-      "tags": [
-        "shared"
-      ]
+      "tags": ["shared"]
     }
   }
 }
