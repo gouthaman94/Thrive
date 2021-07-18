@@ -1,7 +1,6 @@
 import { DashboardGrid } from "@thrive/dashboard-grid";
 import { SideBar, TopBar } from "@thrive/nav-bar";
 import { Tab, Tabs } from "@thrive/shared-ui";
-import React from "react";
 import styles from "./app.module.scss";
 import { TableTab } from "./temp-tab";
 
