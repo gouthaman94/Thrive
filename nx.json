@@ -27,23 +27,37 @@
   },
   "projects": {
     "assets": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "dashboard-grid": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "nav-bar": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "shared-ui": {
-      "tags": ["shared"]
+      "tags": [
+        "shared"
+      ]
     },
     "thrive": {
-      "tags": ["app"]
+      "tags": [
+        "app"
+      ]
     },
     "thrive-e2e": {
-      "tags": ["test"],
-      "implicitDependencies": ["thrive"]
+      "tags": [
+        "test"
+      ],
+      "implicitDependencies": [
+        "thrive"
+      ]
     }
   }
 }

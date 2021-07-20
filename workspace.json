@@ -9,12 +9,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/assets/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/assets/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/assets"],
+          "outputs": [
+            "coverage/libs/assets"
+          ],
           "options": {
             "jestConfig": "libs/assets/jest.config.js",
             "passWithNoTests": true
@@ -30,12 +34,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/dashboard-grid/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/dashboard-grid/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/dashboard-grid"],
+          "outputs": [
+            "coverage/libs/dashboard-grid"
+          ],
           "options": {
             "jestConfig": "libs/dashboard-grid/jest.config.js",
             "passWithNoTests": true
@@ -51,7 +59,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/nav-bar/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/nav-bar/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "lint-styles": {
@@ -62,7 +72,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nav-bar"],
+          "outputs": [
+            "coverage/libs/nav-bar"
+          ],
           "options": {
             "jestConfig": "libs/nav-bar/jest.config.js",
             "passWithNoTests": true
@@ -78,12 +90,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/shared-ui/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/shared-ui/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared-ui"],
+          "outputs": [
+            "coverage/libs/shared-ui"
+          ],
           "options": {
             "jestConfig": "libs/shared-ui/jest.config.js",
             "passWithNoTests": true
@@ -106,7 +122,9 @@
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "uiFramework": "@storybook/react",
             "outputPath": "dist/storybook/shared-ui",
@@ -129,15 +147,22 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/thrive",
             "index": "apps/thrive/src/index.html",
             "main": "apps/thrive/src/main.tsx",
             "polyfills": "apps/thrive/src/polyfills.ts",
             "tsConfig": "apps/thrive/tsconfig.app.json",
-            "assets": ["apps/thrive/src/favicon.ico", "apps/thrive/src/assets"],
-            "styles": ["apps/thrive/src/styles.scss"],
+            "assets": [
+              "apps/thrive/src/favicon.ico",
+              "apps/thrive/src/assets"
+            ],
+            "styles": [
+              "apps/thrive/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "webpack.config.js"
           },
@@ -183,7 +208,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/thrive/**/*.{ts,tsx,js,jsx}"],
+            "lintFilePatterns": [
+              "apps/thrive/**/*.{ts,tsx,js,jsx}"
+            ],
             "fix": true
           }
         },
@@ -195,7 +222,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/thrive"],
+          "outputs": [
+            "coverage/apps/thrive"
+          ],
           "options": {
             "jestConfig": "apps/thrive/jest.config.js",
             "passWithNoTests": true
@@ -224,7 +253,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/thrive-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/thrive-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
